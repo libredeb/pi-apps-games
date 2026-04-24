@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hand-picked Pi-Apps games packaged as .deb files for direct installation on Raspberry Pi. No compiling, no scripts. Just dpkg -i and play.">
+  <meta name="theme-color" content="#0d0d0d">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pi-Apps Games — DEB Packages for Raspberry Pi">
+  <meta property="og:description" content="Hand-picked Pi-Apps games packaged as .deb files. Install with a single command.">
+  <meta property="og:type" content="website">
+
+  <title>Pi-Apps Games — DEB Packages for Raspberry Pi</title>
+
+  <!-- Critical CSS inline to avoid render-blocking -->
+  <style>
+    :root{--bg:#0d0d0d;--surface:#161616;--border:#2c2c2c;--raspberry:#c0174a;--raspberry-h:#e01f59;--text:#e2e2e2;--text-muted:#7a7a7a}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+    .nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,.92);border-bottom:1px solid var(--border)}
+    .nav__inner{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem;width:min(1100px,100% - 2.5rem);margin-inline:auto}
+    .nav__logo{font-family:ui-monospace,'Cascadia Code',monospace;font-size:1rem;font-weight:700;color:var(--raspberry-h)}
+  </style>
+
+  <link rel="preload" href="assets/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="assets/css/main.css"></noscript>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════════════════════════════ -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo" aria-label="Pi-Apps Games home">
+        <span>&gt;_</span> pi-apps-games
+      </a>
+      <ul class="nav__links">
+        <li>
+          <a href="https://github.com/Botspot/pi-apps" target="_blank" rel="noopener"
+             class="btn-ghost" aria-label="View on GitHub">
+            GitHub
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <p class="hero__eyebrow">Pi-Apps Games Project</p>
+      <h1 class="hero__title" id="hero-title">
+        Games for your Pi.<br>
+        <em>No compiling. No scripts.</em>
+      </h1>
+      <p class="hero__desc">
+        A curated selection of the best games from
+        <a href="https://pi-apps.io/" target="_blank" rel="noopener">pi-apps.io</a>
+        repackaged as native <code>.deb</code> files.
+        Install with a single command and play in seconds.
+      </p>
+      <div class="hero__badges" aria-label="Supported architectures and distributions">
+        <span class="badge badge--arch">arm64</span>
+        <span class="badge badge--arch">armhf</span>
+        <span class="badge badge--distro">bookworm (Debian 12)</span>
+        <span class="badge badge--distro">trixie (Debian 13)</span>
+        <span class="badge badge--raspberry">Raspberry Pi OS</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════════ -->
+  <footer class="footer" aria-label="Footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__logo">&gt;_ pi-apps-games</span>
+        <p class="footer__meta">
+          Unofficial project. Games belong to their respective authors.
+          DEB packages based on
+          <a href="https://pi-apps.io/" target="_blank" rel="noopener">pi-apps.io</a>
+          — GPL-3.0.
+        </p>
+        <ul class="footer__links" aria-label="Footer links">
+          <li><a href="https://pi-apps.io/" target="_blank" rel="noopener">pi-apps.io</a></li>
+          <li><a href="https://github.com/Botspot/pi-apps" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
