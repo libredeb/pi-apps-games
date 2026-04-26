@@ -1,0 +1,10 @@
+Package: pacman-sdl
+Version: 0.9.4
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libsdl2-2.0-0, libsdl2-image-2.0-0, libsdl2-ttf-2.0-0, libsdl2-mixer-2.0-0
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: High-performance Pac-Man clone optimized for SDL
+ This is a clone of the original Pac-Man game, optimized for 
+ extremely low CPU usage.

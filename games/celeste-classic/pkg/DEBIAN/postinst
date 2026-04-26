@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+chmod +x /usr/share/ccleste/ccleste
+update-desktop-database -q /usr/share/applications
+exit 0

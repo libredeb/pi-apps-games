@@ -1,0 +1,11 @@
+Package: ccleste
+Version: 1.4.0
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libsdl2-2.0-0, libsdl2-mixer-2.0-0, libsdl2-image-2.0-0
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: C-Source port of the original Celeste Classic
+ Celeste is a hardcore platformer about climbing a mountain. 
+ This port provides a native, low-resource way to play the 
+ original Pico-8 classic on arm64 hardware.
