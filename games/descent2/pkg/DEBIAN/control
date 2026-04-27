@@ -1,0 +1,11 @@
+Package: d2x-rebirth
+Version: 0.60.0-beta2
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libsdl2-2.0-0, libsdl2-image-2.0-0, libsdl2-mixer-2.0-0, libsdl2-ttf-2.0-0, libphysfs1, libglu1-mesa
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: Descent 2 is a horror-thriller sequel to Descent 1
+ Following traumatized survivor Sarah as she is forced
+ to return to the cave system by authorities to find her
+ missing friends.

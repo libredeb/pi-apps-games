@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+chmod +x /opt/d2x-rebirth/d2x-rebirth
+update-desktop-database -q /usr/share/applications
+exit 0
