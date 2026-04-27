@@ -32,10 +32,10 @@ PACKAGE_NAME="${GAME}-${VERSION}_${TARGET_ARCH}"
 mkdir -p $PACKAGE_NAME/DEBIAN
 mkdir -p $PACKAGE_NAME/usr/bin
 mkdir -p $PACKAGE_NAME/usr/share/icons/hicolor/scalable/apps/
-mkdir -p $PACKAGE_NAME/usr/share/pacman_sdl/fonts
-mkdir -p $PACKAGE_NAME/usr/share/pacman_sdl/gfx
-mkdir -p $PACKAGE_NAME/usr/share/pacman_sdl/sounds
-mkdir -p $PACKAGE_NAME/usr/share/pacman_sdl/txt
+mkdir -p $PACKAGE_NAME/usr/local/share/pacman_sdl/fonts
+mkdir -p $PACKAGE_NAME/usr/local/share/pacman_sdl/gfx
+mkdir -p $PACKAGE_NAME/usr/local/share/pacman_sdl/sounds
+mkdir -p $PACKAGE_NAME/usr/local/share/pacman_sdl/txt
 mkdir -p $PACKAGE_NAME/usr/share/applications
 mkdir -p $PACKAGE_NAME/usr/share/doc/pacman_sdl
 
@@ -46,10 +46,10 @@ cp -R pkg/DEBIAN $PACKAGE_NAME/
 cp pacman/src/pacman_sdl $PACKAGE_NAME/usr/bin/
 
 # Data Files
-cp pacman/data/fonts/*.TTF $PACKAGE_NAME/usr/share/pacman_sdl/fonts/
-cp pacman/data/gfx/*.png $PACKAGE_NAME/usr/share/pacman_sdl/gfx/
-cp pacman/data/sounds/*.wav $PACKAGE_NAME/usr/share/pacman_sdl/sounds/
-cp pacman/data/txt/gamecontrollerdb.txt $PACKAGE_NAME/usr/share/pacman_sdl/txt/
+cp pacman/data/fonts/*.TTF $PACKAGE_NAME/usr/local/share/pacman_sdl/fonts/
+cp pacman/data/gfx/*.png $PACKAGE_NAME/usr/local/share/pacman_sdl/gfx/
+cp pacman/data/sounds/*.wav $PACKAGE_NAME/usr/local/share/pacman_sdl/sounds/
+cp pacman/data/txt/gamecontrollerdb.txt $PACKAGE_NAME/usr/local/share/pacman_sdl/txt/
 
 # Desktop, Docs and Icon
 cp pacman/pacman_sdl.desktop $PACKAGE_NAME/usr/share/applications/

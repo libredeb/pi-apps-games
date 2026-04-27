@@ -1,0 +1,11 @@
+Package: ddnet
+Version: 19.8.2
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libc6, libstdc++6, libgcc-s1, libfreetype6, libcurl4, libfreetype6, libgl1, libgles2, libglew2.2, libglib2.0-0, libjsonparser1.1, libnotify4, libogg0, libopus0, libopusfile0, libpng16-16, libpnglite0, libsdl2-2.0-0, libsqlite3-0, libssl3, libswresample4, libswscale8 | libswscale7 | libswscale6 | libswscale5, libvulkan1, libwavpack1, zlib1g, libavcodec60 | libavcodec59 | libavcodec58, libavformat60 | libavformat59 | libavformat58, libavutil59 | libavutil58 | libavutil57
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: Cooperative technical platformer based on Teeworlds
+ DDraceNetwork is a Teeworlds modification with unique cooperative 
+ gameplay. Help each other through custom maps with up to 64 players. 
+ This package includes both the game client and the server.

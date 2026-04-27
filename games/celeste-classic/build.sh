@@ -26,6 +26,7 @@ mkdir -p $PACKAGE_NAME/DEBIAN
 mkdir -p $PACKAGE_NAME/usr/share/ccleste
 mkdir -p $PACKAGE_NAME/usr/share/applications
 mkdir -p $PACKAGE_NAME/usr/bin
+mkdir -p $PACKAGE_NAME/usr/share/icons/hicolor/scalable/apps/
 
 # Debian Control files
 cp -R pkg/DEBIAN $PACKAGE_NAME/
@@ -43,7 +44,7 @@ Name=Celeste Classic
 Comment=Hardcore mountain-climbing platformer
 Exec=/usr/share/ccleste/ccleste
 Path=/usr/share/ccleste
-Icon=ccleste.png
+Icon=ccleste
 Terminal=false
 Categories=Game;
 EOF
