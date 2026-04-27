@@ -1,0 +1,11 @@
+Package: d1x-rebirth
+Version: 0.60.0-beta2
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libsdl2-2.0-0, libsdl2-image-2.0-0, libsdl2-mixer-2.0-0, libsdl2-ttf-2.0-0, libphysfs1, libglu1-mesa
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: Descent 1 is a groundbreaking 3D first-person shooter
+ Players act as a mercenary navigating maze-like mines
+ across the solar system, destroying infected robots,
+ destroying the reactor, and escaping.

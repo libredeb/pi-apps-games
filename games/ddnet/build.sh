@@ -6,7 +6,6 @@ source "$CURRENT_DIR/../../utils/get-arch.sh"
 
 # Compose package name
 TARGET_ARCH=$(get_debian_arch)
-# GAME=$(basename "$CURRENT_DIR")
 GAME="ddnet"
 VERSION=19.8.2
 

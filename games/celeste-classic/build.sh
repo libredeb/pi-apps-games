@@ -6,7 +6,6 @@ source "$CURRENT_DIR/../../utils/get-arch.sh"
 
 # Compose package name
 TARGET_ARCH=$(get_debian_arch)
-# GAME=$(basename "$CURRENT_DIR")
 GAME="ccleste"
 
 sudo apt-get install -y build-essential libsdl2-mixer-dev libsdl2-dev libsdl2-image-dev libsndio-dev || exit 1
