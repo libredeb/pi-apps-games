@@ -1,0 +1,10 @@
+Package: astromenace
+Version: 1.4.3
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libsdl2-2.0-0, libogg0, libvorbis0a, libopenal1, libalut0, libfreetype6, libglu1-mesa
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: AstroMenace 3D space shooter
+ AstroMenace is a hardcore 3D space scroll-shooter with spaceship 
+ upgrade possibilities. High-quality graphics and intense gameplay.
