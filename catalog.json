@@ -1,0 +1,54 @@
+{
+    "version": 20263004,
+    "games": [
+        {
+            "id": "astromenace",
+            "name": "AstroMenace",
+            "version": "1.4.3",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/AstroMenace/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/astromenace-1.4.3_arm64.deb"
+        },
+        {
+            "id": "ccleste",
+            "name": "Celeste Classic",
+            "version": "1.4.0",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Celeste%20Classic/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/ccleste-1.4.0_arm64.deb"
+        },
+        {
+            "id": "ddnet",
+            "name": "DDNet",
+            "version": "19.8.2",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/DDNet/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/ddnet-19.8.2_arm64.deb"
+        },
+        {
+            "id": "d1x-rebirth",
+            "name": "Descent 1",
+            "version": "0.60.0-beta2",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Descent%201/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/d1x-rebirth-0.60.0-beta2_arm64.deb"
+        },
+        {
+            "id": "d2x-rebirth",
+            "name": "Descent 2",
+            "version": "0.60.0-beta2",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Descent%202/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/d2x-rebirth-0.60.0-beta2_arm64.deb"
+        },
+        {
+            "id": "marathon2",
+            "name": "Marathon 2",
+            "version": "1.11",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Marathon%202/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/marathon2-1.11_arm64.deb"
+        },
+        {
+            "id": "pacman-sdl",
+            "name": "Pac-Man",
+            "version": "0.9.4",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Pac-Man/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/pacman-sdl-0.9.4_arm64.deb"
+        }
+    ]
+}
