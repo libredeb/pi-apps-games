@@ -5,6 +5,9 @@
             "id": "astromenace",
             "name": "AstroMenace",
             "version": "1.4.3",
+            "genre": "Space Shooter",
+            "size": "114.96 MB",
+            "description": "AstroMenace is a hardcore 3D space scroll-shooter with spaceship upgrade possibilities. High-quality graphics and intense gameplay.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/AstroMenace/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/astromenace-1.4.3_arm64.deb"
         },
@@ -12,6 +15,9 @@
             "id": "ccleste",
             "name": "Celeste Classic",
             "version": "1.4.0",
+            "genre": "Platforms - Adventure",
+            "size": "3.39 MB",
+            "description": "Celeste is a hardcore platformer about climbing a mountain. Players guide a character named Madeline up a 3000-meter mountain, using precise jumping, wall-jumping, and a single air-dash.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Celeste%20Classic/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/ccleste-1.4.0_arm64.deb"
         },
@@ -19,6 +25,9 @@
             "id": "ddnet",
             "name": "DDNet",
             "version": "19.8.2",
+            "genre": "Action - Platforms",
+            "size": "84.85 MB",
+            "description": "DDraceNetwork is a Teeworlds modification with unique cooperative gameplay. Help each other through custom maps with up to 64 players. This package includes both the game client and the server.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/DDNet/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/ddnet-19.8.2_arm64.deb"
         },
@@ -26,6 +35,9 @@
             "id": "d1x-rebirth",
             "name": "Descent 1",
             "version": "0.60.0-beta2",
+            "genre": "First-person Shooter",
+            "size": "110.10 MB",
+            "description": "Descent 1 is a groundbreaking 3D first-person shooter. Players act as a mercenary navigating maze-like mines across the solar system, destroying infected robots, destroying the reactor, and escaping.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Descent%201/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/d1x-rebirth-0.60.0-beta2_arm64.deb"
         },
@@ -33,6 +45,9 @@
             "id": "d2x-rebirth",
             "name": "Descent 2",
             "version": "0.60.0-beta2",
+            "genre": "First-person Shooter",
+            "size": "63.43 MB",
+            "description": "Descent 2 is a horror-thriller sequel to Descent 1. Following traumatized survivor Sarah as she is forced to return to the cave system by authorities to find her missing friends.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Descent%202/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/d2x-rebirth-0.60.0-beta2_arm64.deb"
         },
@@ -40,6 +55,9 @@
             "id": "marathon2",
             "name": "Marathon 2",
             "version": "1.11",
+            "genre": "Science Fiction",
+            "size": "151.50 MB",
+            "description": "Is the critically acclaimed sequel to Bungie’s sci-fi masterpiece. As a cybernetic Security Officer, you are abducted by the rogue AI Durandal to the distant planet Lh'owon.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Marathon%202/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/marathon2-1.11_arm64.deb"
         },
@@ -47,6 +65,9 @@
             "id": "pacman-sdl",
             "name": "Pac-Man",
             "version": "0.9.4",
+            "genre": "Action - Arcade",
+            "size": "3.90 MB",
+            "description": "High-performance Pac-Man clone optimized for SDL. This is a clone of the original Pac-Man game.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Pac-Man/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/pacman-sdl-0.9.4_arm64.deb"
         }
