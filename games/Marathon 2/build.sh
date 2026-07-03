@@ -17,14 +17,26 @@ rm -rf AlephOne-*
 wget https://github.com/Aleph-One-Marathon/alephone/releases/download/release-${version}/AlephOne-${version}.tar.bz2 
 tar xjvf AlephOne-${version}.tar.bz2 || error "Unable to decompress source code"
 rm -f AlephOne-*.tar.bz2
-cd AlephOne-${version}
+
+# This symbolic link is needed because make brokes when try to read 
+# the folder with a space in the name. This is the fix.
+REAL_PATH="$(pwd)"
+TMP_LINK="/tmp/build_marathon2"
+
+# Remove any existing junk data, if there is any, and create
+# the space-free link
+rm -rf "$TMP_LINK"
+ln -s "$REAL_PATH" "$TMP_LINK"
+cd "$TMP_LINK/AlephOne-${version}"
+
 VERSION=$(grep 'define A1_DISPLAY_VERSION' Source_Files/Misc/alephversion.h | cut -d'"' -f2)
 ./configure --prefix=/usr
 make -j$(nproc)
-make DESTDIR=$(pwd)/../pkg_output install
+make DESTDIR="$TMP_LINK/pkg_output" install
 
 # Compose the DEB package
-cd ..
+cd "$REAL_PATH"
+rm -rf "$TMP_LINK"
 PACKAGE_NAME="${GAME}-${VERSION}_${TARGET_ARCH}"
 mkdir -p $PACKAGE_NAME/DEBIAN
 mkdir -p $PACKAGE_NAME/usr/bin
@@ -42,6 +54,7 @@ cp -r pkg_output/usr/share/AlephOne $PACKAGE_NAME/usr/share/
 cp -r pkg_output/usr/share/icons $PACKAGE_NAME/usr/share/
 cp -r pkg_output/usr/share/mime $PACKAGE_NAME/usr/share/
 cp -r pkg_output/usr/share/man $PACKAGE_NAME/usr/share/
+rm -rf $PACKAGE_NAME/usr/share/icons/hicolor/{1*,2*,3*,4*,6*,9*} 
 
 # Move Marathon 2 Data Files (The .zip content)
 wget https://github.com/Aleph-One-Marathon/alephone/releases/download/release-${version}/Marathon2-${version}-Data.zip || exit 1

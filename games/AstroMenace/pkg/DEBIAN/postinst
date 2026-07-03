@@ -11,4 +11,6 @@ if [ -x /usr/bin/gtk-update-icon-cache ]; then
     gtk-update-icon-cache -f -t /usr/share/icons/hicolor || true
 fi
 
+sync
+
 exit 0

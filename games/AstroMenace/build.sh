@@ -8,7 +8,7 @@ source "$CURRENT_DIR/../../utils/get-arch.sh"
 TARGET_ARCH=$(get_debian_arch)
 GAME="astromenace"
 
-sudo apt-get install -y g++ cmake make ninja-build libsdl2-dev libogg-dev libvorbis-dev libopenal-dev libalut-dev libfreetype6-dev libglu1-mesa-dev || exit 1
+sudo apt-get install -y g++ cmake make ninja-build libsdl2-dev libogg-dev libvorbis-dev libopenal-dev libalut-dev libfreetype6-dev libglu1-mesa-dev python3-pil || exit 1
 
 #build
 rm -rf astromenace
@@ -19,7 +19,7 @@ VERSION=$(grep "GAME_VERSION" src/build_config.h | cut -d '"' -f 2)
 
 mkdir build
 cd build || exit 1
-cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=$PWD/../bin -DCMAKE_BUILD_TYPE=Release
+cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=$PWD/../bin -DCMAKE_BUILD_TYPE=Release -DARM_LOW_RES=ON
 cmake --build . --target install
 
 # Compose the DEB package

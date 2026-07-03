@@ -9,25 +9,24 @@ TARGET_ARCH=$(get_debian_arch)
 GAME="ddnet"
 VERSION=19.8.2
 
+# Dependencies
+sudo apt-get install -y build-essential cargo cmake git libcurl4-openssl-dev libssl-dev libfreetype6-dev libgles2-mesa-dev libegl1-mesa-dev libwayland-dev wayland-protocols libxkbcommon-dev libglew-dev libnotify-dev libogg-dev libopus-dev libopusfile-dev libpnglite-dev libsdl2-dev libsqlite3-dev libwavpack-dev python3 google-mock rustc glslang-tools || exit 1
 
-#Dependencies
-sudo apt-get install -y build-essential cargo cmake git libcurl4-openssl-dev libssl-dev libfreetype6-dev libgles2-mesa-dev libglew-dev libnotify-dev libogg-dev libopus-dev libopusfile-dev libpnglite-dev libsdl2-dev libsqlite3-dev libwavpack-dev python3 google-mock libx264-dev libavfilter-dev libavdevice-dev libavformat-dev libavcodec-dev libavutil-dev rustc glslang-tools libvulkan-dev || exit 1
-
-#Clone the Repository
+# Clone the Repository
 git clone https://github.com/ddnet/ddnet --recursive -b $VERSION --depth=1 || exit 1
 
-#Build
+# Build
 cd ddnet || exit 1
 mkdir build
 cd build || exit 1
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DVULKAN=ON || error 'Failed at cmake!'
+
+# CMake optimizado para Pi Zero 2 W: Sin Vulkan, sin grabadora, sin servidor. Puro rendimiento OpenGL.
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DVULKAN=OFF -DVIDEORECORDER=OFF -DSERVER=OFF -DTOOLS=OFF -DAUTOUPDATE=OFF || error 'Failed at cmake!'
 make -j$(nproc) || error 'Failed at make!'
 make DESTDIR=$(pwd)/../package_output install
 
 # Compose the DEB package
-# We need 2 cd to exit from 'build' directory and exit from 'ddnet' too
-cd ..
-cd ..
+cd ../..
 PACKAGE_NAME="${GAME}-${VERSION}_${TARGET_ARCH}"
 mkdir -p $PACKAGE_NAME/DEBIAN
 mkdir -p $PACKAGE_NAME/usr/bin

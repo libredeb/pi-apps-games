@@ -41,8 +41,7 @@ sudo tee $PACKAGE_NAME/usr/share/applications/ccleste.desktop <<'EOF'
 Type=Application
 Name=Celeste Classic
 Comment=Hardcore mountain-climbing platformer
-Exec=/usr/share/ccleste/ccleste
-Path=/usr/share/ccleste
+Exec=sh -c 'cd /usr/share/ccleste && ./ccleste'
 Icon=ccleste
 Terminal=false
 Categories=Game;
