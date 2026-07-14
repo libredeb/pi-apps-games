@@ -60,16 +60,6 @@
             "description": "Is the critically acclaimed sequel to Bungie’s sci-fi masterpiece. As a cybernetic Security Officer, you are abducted by the rogue AI Durandal to the distant planet Lh'owon.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Marathon%202/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v13-trixie.arm64/marathon2-1.11_arm64.deb"
-        },
-        {
-            "id": "pacman-sdl",
-            "name": "Pac-Man",
-            "version": "0.9.4",
-            "genre": "Action - Arcade",
-            "size": "3.90 MB",
-            "description": "High-performance Pac-Man clone optimized for SDL. This is a clone of the original Pac-Man game.",
-            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Pac-Man/pkg/icon.png",
-            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v13-trixie.arm64/pacman-sdl-0.9.4_arm64.debs"
         }
     ]
 }
