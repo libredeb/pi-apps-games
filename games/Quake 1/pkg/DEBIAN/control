@@ -1,0 +1,11 @@
+Package: quake1
+Version: 0.97.0
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libc6 (>= 2.34), libgl1, libmad0 (>= 0.15.1b-3), libsdl2-2.0-0 (>= 2.0.12), libvorbisfile3 (>= 1.1.2)
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: Classic dark fantasy first-person shooter game
+ Quake (1996) is a legendary masterpiece by id Software featuring intense
+ action, atmospheric gothic-sci-fi worlds, and a groundbreaking fully 3D
+ graphics experience, fully optimized here for modern computer systems.
