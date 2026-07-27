@@ -23,6 +23,7 @@ cd ../../
 PACKAGE_NAME="${GAME}-${VERSION}_${TARGET_ARCH}"
 mkdir -p $PACKAGE_NAME/DEBIAN
 mkdir -p $PACKAGE_NAME/usr/share/quake1
+mkdir -p $PACKAGE_NAME/usr/share/quake1/id1
 mkdir -p $PACKAGE_NAME/usr/share/applications
 mkdir -p $PACKAGE_NAME/usr/share/icons/hicolor/scalable/apps/
 
@@ -31,6 +32,11 @@ cp -R pkg/DEBIAN $PACKAGE_NAME/
 
 # Binary file
 cp quakespasm/Quake/quakespasm $PACKAGE_NAME/usr/share/quake1/quakespasm
+
+# Data PAK0
+curl -L -o /tmp/quake.zip "https://release-assets.githubusercontent.com/github-production-release-asset/729690119/9ede143b-c461-45f2-90e6-5f2859aff799"
+unzip -o /tmp/quake.zip -d /tmp/quake
+cp /tmp/quake/quake/quakepaks/id1/PAK0.PAK $PACKAGE_NAME/usr/share/quake1/id1/pak0.pak
 
 # Desktop and Icon
 sudo tee $PACKAGE_NAME/usr/share/applications/quake1.desktop <<'EOF'
@@ -46,7 +52,7 @@ Keywords=quake;idsoftware;fps;shooter;retro;
 EOF
 cp pkg/icon.png $PACKAGE_NAME/usr/share/icons/hicolor/scalable/apps/quake1.png
 
-rm -rf quakespasm
+rm -rf quakespasm /tmp/quake.zip /tmp/quake
 
 # Package DEB file
 chmod 755 $PACKAGE_NAME/DEBIAN/postinst
