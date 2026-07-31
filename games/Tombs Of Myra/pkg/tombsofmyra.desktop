@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Tombs Of Myra
+GenericName=Adventure Game
+Comment=A turn based dungeon creawler game.
+Path=/opt/tombsofmyra/
+Exec=/opt/tombsofmyra/TombsOfMyra
+Icon=tombsofmyra
+Terminal=false
+Categories=Game;AdventureGame;
+StartupNotify=true

@@ -1,5 +1,16 @@
 #!/bin/sh
 set -e
 chmod +x /usr/share/quake1/quakespasm
+
+CONFIG_DIR="/home/gamercard/.quakespasm/id1"
+CONFIG_FILE="$CONFIG_DIR/config.cfg"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+	mkdir -p "$CONFIG_DIR"
+	cp /usr/share/quake1/hyperpixel.cfg "$CONFIG_FILE"
+	chown -R gamercard:gamercard /home/gamercard/.quakespasm
+	chmod 644 "$CONFIG_FILE"
+fi
+
 update-desktop-database -q /usr/share/applications
 exit 0

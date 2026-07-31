@@ -60,6 +60,46 @@
             "description": "Is the critically acclaimed sequel to Bungie’s sci-fi masterpiece. As a cybernetic Security Officer, you are abducted by the rogue AI Durandal to the distant planet Lh'owon.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Marathon%202/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/marathon2-1.11_arm64.deb"
+        },
+        {
+            "id": "vinyl",
+            "name": "Vinyl",
+            "version": "0.1.1",
+            "genre": "Music Player",
+            "size": "2.04 MB",
+            "description": "A music player that provides a beautiful, fullscreen interface to your music library. Built for those who appreciate a clean aesthetic and intuitive control.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Vinyl/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/vinyl_0.1.1-1_arm64.deb"
+        },
+        {
+            "id": "quake1",
+            "name": "Quake 1",
+            "version": "0.97.0",
+            "genre": "First-person Shooter",
+            "size": "18.6 MB",
+            "description": "Quake is a dark fantasy first-person shooter where you fight monsters through portal gates, featuring fast action and gothic horror levels.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Quake%201/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/quake1-0.97.0_arm64.deb"
+        },
+        {
+            "id": "quantum-storm",
+            "name": "Quantum Storm",
+            "version": "1.17",
+            "genre": "Arcade/Breakout",
+            "size": "92.74 MB",
+            "description": "a retro breakout arcade game where a self-aware quantum computer threatens the world, featuring 300 levels designed by Clive Townsend.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Quantum%20Storm/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/quantum-storm_1.17-1_arm64.deb"
+        },
+        {
+            "id": "tombsofmyra",
+            "name": "Tombs Of Myra",
+            "version": "1.0.0",
+            "genre": "Turn-based Puzzle",
+            "size": "14.34 MB",
+            "description": "Tombs Of Myra is a turn-based puzzle dungeon crawler featuring strategic grid movement, 120 unique levels, and survival tools like swords and bombs.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Tombs%20Of%20Myra/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/tombsofmyra_1.0.0-1_arm64.deb"
         }
     ]
 }

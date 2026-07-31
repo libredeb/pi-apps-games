@@ -34,7 +34,7 @@ cp -R pkg/DEBIAN $PACKAGE_NAME/
 cp quakespasm/Quake/quakespasm $PACKAGE_NAME/usr/share/quake1/quakespasm
 
 # Data PAK0
-curl -L -o /tmp/quake.zip "https://release-assets.githubusercontent.com/github-production-release-asset/729690119/9ede143b-c461-45f2-90e6-5f2859aff799"
+curl -L -o /tmp/quake.zip "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/quake.zip"
 unzip -o /tmp/quake.zip -d /tmp/quake
 cp /tmp/quake/quake/quakepaks/id1/PAK0.PAK $PACKAGE_NAME/usr/share/quake1/id1/pak0.pak
 
@@ -44,13 +44,16 @@ sudo tee $PACKAGE_NAME/usr/share/applications/quake1.desktop <<'EOF'
 Type=Application
 Name=Quake 1
 Comment=Play the classic 1996 dark fantasy first-person shooter
-Exec=/usr/share/quake1/quakespasm -basedir /usr/share/quake1/
+Exec=env SDL_GAMECONTROLLERCONFIG="03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b7,rightshoulder:b6,rightx:a0,lefty:a1,platform:Linux," /usr/share/quake1/quakespasm -basedir /usr/share/quake1/ +cl_yawspeed 50 +joy_yawspeed 50 +cl_pitchspeed 60
 Icon=quake1
 Terminal=false
 Categories=Game;ActionGame;
 Keywords=quake;idsoftware;fps;shooter;retro;
 EOF
 cp pkg/icon.png $PACKAGE_NAME/usr/share/icons/hicolor/scalable/apps/quake1.png
+
+# HyperPixel config
+cp pkg/hyperpixel.cfg $PACKAGE_NAME/usr/share/quake1/hyperpixel.cfg
 
 rm -rf quakespasm /tmp/quake.zip /tmp/quake
 

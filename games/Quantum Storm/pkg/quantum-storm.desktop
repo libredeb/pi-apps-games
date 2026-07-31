@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Quantum Storm
+Comment=Gamecard Retail Game
+Path=/usr/local/games/QS
+Exec=/usr/local/games/QS/QS
+Icon=quantum-storm
+Terminal=false
+Type=Application
+Categories=Game;
