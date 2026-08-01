@@ -1,5 +1,5 @@
 {
-    "version": 20263107,
+    "version": 20260801,
     "games": [
         {
             "id": "astromenace",
@@ -90,6 +90,16 @@
             "description": "a retro breakout arcade game where a self-aware quantum computer threatens the world, featuring 300 levels designed by Clive Townsend.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Quantum%20Storm/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/quantum-storm_1.17-1_arm64.deb"
+        },
+        {
+            "id": "retropie",
+            "name": "RetroPie",
+            "version": "2.11.2",
+            "genre": "Retro-gaming Bundle",
+            "size": "198 MB",
+            "description": "RetroPie is a flexible, graphical front-end designed for keyboardless navigation of your retro game collection, across multiple systems.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/RetroPie/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/retropie_2.11.2_arm64.deb"
         },
         {
             "id": "tombsofmyra",
