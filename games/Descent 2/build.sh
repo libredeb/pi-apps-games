@@ -13,14 +13,15 @@ sudo apt-get install -y scons libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev li
 
 rm -rf dxx-rebirth
 
-git clone https://github.com/dxx-rebirth/dxx-rebirth || exit 1
+git clone https://github.com/libredeb/dxx-rebirth.git || exit 1
 cd dxx-rebirth
+wget "https://raw.githubusercontent.com/libredeb/vinyl/main/data/gamecontrollerdb.txt" -O contrib/gamecontrollerdb.txt || error "Failed to download curated gamecontrollerdb.txt!"
 # Fix some wrong declarations
-sed -i 's/^static hud_x_scale_float HUD_SCALE_X/static constexpr hud_x_scale_float HUD_SCALE_X/' similar/main/gauges.cpp
-sed -i 's/^static hud_y_scale_float HUD_SCALE_Y/static constexpr hud_y_scale_float HUD_SCALE_Y/' similar/main/gauges.cpp
-sed -i 's/^static hud_ar_scale_float HUD_SCALE_AR/static constexpr hud_ar_scale_float HUD_SCALE_AR/' similar/main/gauges.cpp
+# sed -i 's/^static hud_x_scale_float HUD_SCALE_X/static constexpr hud_x_scale_float HUD_SCALE_X/' similar/main/gauges.cpp
+# sed -i 's/^static hud_y_scale_float HUD_SCALE_Y/static constexpr hud_y_scale_float HUD_SCALE_Y/' similar/main/gauges.cpp
+# sed -i 's/^static hud_ar_scale_float HUD_SCALE_AR/static constexpr hud_ar_scale_float HUD_SCALE_AR/' similar/main/gauges.cpp
 # end fix
-scons sdl2=1 sdlmixer=1 d2x=1 -j$(nproc) || error "Failed to compile Descent 2 game engine!"
+scons sdl2=1 sdlmixer=1 d2x=1 lto=0 -j$(nproc) || error "Failed to compile Descent 2 game engine!"
 
 # Compose the DEB package
 cd ..
