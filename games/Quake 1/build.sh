@@ -44,7 +44,7 @@ sudo tee $PACKAGE_NAME/usr/share/applications/quake1.desktop <<'EOF'
 Type=Application
 Name=Quake 1
 Comment=Play the classic 1996 dark fantasy first-person shooter
-Exec=env SDL_GAMECONTROLLERCONFIG="03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b7,rightshoulder:b6,rightx:a0,lefty:a1,platform:Linux," /usr/share/quake1/quakespasm -basedir /usr/share/quake1/ +cl_yawspeed 50 +joy_yawspeed 50 +cl_pitchspeed 60
+Exec=env SDL_GAMECONTROLLERCONFIG="03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b7,rightshoulder:b6,rightx:a0,lefty:a1,platform:Linux," /usr/share/quake1/quakespasm -basedir /usr/share/quake1/ +cl_yawspeed 50 +joy_yawspeed 50 +cl_pitchspeed 50
 Icon=quake1
 Terminal=false
 Categories=Game;ActionGame;
