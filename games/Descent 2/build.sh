@@ -28,7 +28,6 @@ cd ..
 PACKAGE_NAME="${GAME}-${VERSION}_${TARGET_ARCH}"
 mkdir -p $PACKAGE_NAME/DEBIAN
 mkdir -p $PACKAGE_NAME/opt/d2x-rebirth
-mkdir -p $PACKAGE_NAME/usr/bin
 mkdir -p $PACKAGE_NAME/usr/share/applications
 
 # Debian Control files
@@ -54,17 +53,12 @@ wget https://web.archive.org/web/20221208193318if_/https://www.dxx-rebirth.com/d
 # Configuration
 echo -e "ResolutionX=720\nResolutionY=720\nWindowMode=0" > $PACKAGE_NAME/opt/d2x-rebirth/descent.cfg
 
-# Make command asociations
-echo '#!/bin/bash
-cd /opt/d2x-rebirth
-./d2x-rebirth -hogdir /opt/d2x-rebirth "$@"' | tee $PACKAGE_NAME/usr/bin/d2x-rebirth >/dev/null
-chmod +x $PACKAGE_NAME/usr/bin/d2x-rebirth
-
 # Make menu launcher
 echo "[Desktop Entry]
 Name=Descent 2
 Comment=DXX-Rebirth source port of Descent 2
-Exec=/usr/bin/d2x-rebirth
+Path=/opt/d2x-rebirth
+Exec=/opt/d2x-rebirth/d2x-rebirth -nocursor -nomouse -lowmem -hogdir /opt/d2x-rebirth
 Icon=/opt/d2x-rebirth/icon.png
 Terminal=false
 Type=Application
