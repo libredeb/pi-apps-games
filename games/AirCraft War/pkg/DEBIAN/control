@@ -1,0 +1,11 @@
+Package: aircraftwar
+Version: 2.2.0
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libsdl2-2.0-0, libsdl2-image-2.0-0, libsdl2-mixer-2.0-0, libsdl2-ttf-2.0-0
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: Vertical shoot'em up arcade game
+ Harbour AirCraft War is a classic vertical scrolling shooter where
+ you pilot a fighter aircraft, destroy enemy waves, collect power-ups
+ and bombs, and compete for high scores.
