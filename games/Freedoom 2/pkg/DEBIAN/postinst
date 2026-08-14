@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+chmod +x /usr/share/freedoom2/dsda-doom /usr/share/freedoom2/freedoom2
+
+CONFIG_DIR="/home/gamercard/.local/share/dsda-doom"
+CONFIG_FILE="$CONFIG_DIR/dsda-doom.cfg"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+    mkdir -p "$CONFIG_DIR"
+    cp /usr/share/freedoom2/dsda-doom.cfg "$CONFIG_FILE"
+    chown -R gamercard:gamercard /home/gamercard/.local/share/dsda-doom
+    chmod 644 "$CONFIG_FILE"
+fi
+
+if [ -x /usr/bin/update-desktop-database ]; then
+    update-desktop-database -q /usr/share/applications
+fi
+
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+    gtk-update-icon-cache -f -t /usr/share/icons/hicolor || true
+fi
+
+sync
+
+exit 0

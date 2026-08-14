@@ -1,0 +1,22 @@
+#!/bin/bash
+# Launcher: Hyperpixel 720x720, Leonardo gamepad, dsda-doom + Freedoom Phase 2
+
+GAME_DIR="/usr/share/freedoom2"
+CONFIG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/dsda-doom"
+CONFIG_FILE="${CONFIG_DIR}/dsda-doom.cfg"
+
+mkdir -p "$CONFIG_DIR"
+if [ ! -f "$CONFIG_FILE" ]; then
+    cp "${GAME_DIR}/dsda-doom.cfg" "$CONFIG_FILE"
+fi
+
+export DOOMWADPATH="${GAME_DIR}${DOOMWADPATH:+:${DOOMWADPATH}}"
+export SDL_GAMECONTROLLERCONFIG="03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b5,rightshoulder:b6,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,leftx:a0,lefty:a1,platform:Linux,"
+
+exec "${GAME_DIR}/dsda-doom" \
+    -config "$CONFIG_FILE" \
+    -save "$CONFIG_DIR" \
+    -iwad "${GAME_DIR}/freedoom2.wad" \
+    -geom 720x720f \
+    -nomouse \
+    "$@"
