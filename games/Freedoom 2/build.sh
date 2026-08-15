@@ -48,6 +48,9 @@ for patch in debian/patches/*.patch; do
     patch -p1 -N < "$patch" || exit 1
 done
 
+# Custom TITLEPIC background (logo + Phase 2 overlay still applied by create_caption)
+cp "$CURRENT_DIR/pkg/titlepic.png" graphics/titlepic/titlepic.png || exit 1
+
 make "${MAKE_OPTS[@]}" wads/freedoom2.wad \
     NEWS.html README.html \
     manual/freedoom-manual-en.pdf \

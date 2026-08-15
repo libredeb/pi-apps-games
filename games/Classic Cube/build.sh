@@ -6,17 +6,19 @@ source "$CURRENT_DIR/../../utils/get-arch.sh"
 
 # Compose package name
 TARGET_ARCH=$(get_debian_arch)
-MOJANG_CDN="https://resources.download.minecraft.net"
-CC_CDN="http://static.classicube.net"
 GAME="classic-cube"
 
-download_mojang() {
-    local hash="$1" dest="$2"
-    local prefix="${hash:0:2}"
-    wget -q --show-progress -O "$dest" "${MOJANG_CDN}/${prefix}/${hash}"
-}
+# Official ClassiCube CDN. The only texture pack we ship is their own
+# redistributable default.zip (saved as texpacks/classicube.zip).
+#
+# LEGAL: Do not download or package anything from
+# resources.download.minecraft.net. ClassiCube's launcher can fetch Mojang
+# music (.ogg, including C418) and Classic sound hashes from that CDN, but
+# redistributing those assets in a .deb is copyright infringement. This
+# recipe never references that host, those hashes, or any Minecraft music.
+CC_CDN="https://static.classicube.net"
 
-sudo apt-get install -y build-essential libsdl2-dev libgles2-mesa-dev libgl1-mesa-dev libwayland-dev libopenal-dev || exit 1
+sudo apt-get install -y build-essential libsdl2-dev libgles2-mesa-dev libgl1-mesa-dev libwayland-dev libopenal-dev ffmpeg zip wget || exit 1
 
 # ── Build from source ──
 
@@ -26,83 +28,39 @@ VERSION=$(grep -i "GAME_APP_VER" src/Constants.h | cut -d'"' -f2)
 
 make rpi BUILD_SDL2=1 RELEASE=1
 
-# ── Download assets ──
+# ── Redistributable assets only ──
+#
+# Textures: ClassiCube publishes its own pack at $CC_CDN/default.zip.
+# It must be stored as texpacks/classicube.zip. Shipping an incomplete
+# texpacks/default.zip would block classicube.zip from loading, and a
+# "default" pack built from Minecraft jars is not redistributable.
+#
+# Sounds: pkg/build-freesound-audio.sh builds audio/default.zip from
+# redistributable Freesound samples, using the WAV names ClassiCube expects
+# (dig_grass1.wav, step_wood1.wav, …):
+#   grass/glass/gravel — ClassiCube/doc/sound-credits.md
+#   wood/stone         — original CC BY Freesound files used in Classic
+#                        (not the processed WAVs from Mojang's CDN)
+#   sand/snow/cloth    — CC0 replacements (Classic had no public mapping;
+#                        snow was a C418 original)
+#
+# Music: none. We do not ship C418/Mojang .ogg files. ClassiCube will play
+# any .ogg placed in audio/ at runtime; this package leaves that directory
+# without music.
 
-# Texture pack (classicube.zip only — default.zip requires C-level image
-# patching that can't be replicated in shell, and shipping an incomplete
-# default.zip blocks classicube.zip from loading)
-mkdir -p texpacks
-wget -q --show-progress "${CC_CDN}/default.zip" -O texpacks/classicube.zip
+mkdir -p texpacks audio
 
-# Music
-mkdir -p audio
-declare -A MUSIC=(
-    ["calm1.ogg"]="50a59a4f56e4046701b758ddbb1c1587efa4cadf"
-    ["calm2.ogg"]="74da65c99aa578486efa7b69983d3533e14c0d6e"
-    ["calm3.ogg"]="14ae57a6bce3d4254daa8be2b098c2d99743cc3f"
-    ["hal1.ogg"]="df1ff11b79757432c5c3f279e5ecde7b63ceda64"
-    ["hal2.ogg"]="ceaaaa1d57dfdfbb0bd4da5ea39628b42897a687"
-    ["hal3.ogg"]="dd85fb564e96ee2dbd4754f711ae9deb08a169f9"
-    ["hal4.ogg"]="5e7d63e75c6e042f452bc5e151276911ef92fed8"
-)
-for name in "${!MUSIC[@]}"; do
-    download_mojang "${MUSIC[$name]}" "audio/${name}"
-done
+echo "Downloading ClassiCube texture pack (redistributable)..."
+wget -q --show-progress "${CC_CDN}/default.zip" -O texpacks/classicube.zip \
+    || { echo "ERROR: Failed to download ${CC_CDN}/default.zip"; exit 1; }
 
-# Sound effects → audio/default.zip
-echo "Building audio/default.zip..."
-SND_TMP=$(mktemp -d)
-declare -A SOUNDS=(
-    ["dig_cloth1.wav"]="5fd568d724ba7d53911b6cccf5636f859d2662e8"
-    ["dig_cloth2.wav"]="56c1d0ac0de2265018b2c41cb571cc6631101484"
-    ["dig_cloth3.wav"]="9c63f2a3681832dc32d206f6830360bfe94b5bfc"
-    ["dig_cloth4.wav"]="55da1856e77cfd31a7e8c3d358e1f856c5583198"
-    ["dig_grass1.wav"]="41cbf5dd08e951ad65883854e74d2e034929f572"
-    ["dig_grass2.wav"]="86cb1bb0c45625b18e00a64098cd425a38f6d3f2"
-    ["dig_grass3.wav"]="f7d7e5c7089c9b45fa5d1b31542eb455fad995db"
-    ["dig_grass4.wav"]="c7b1005d4926f6a2e2387a41ab1fb48a72f18e98"
-    ["dig_gravel1.wav"]="e8b89f316f3e9989a87f6e6ff12db9abe0f8b09f"
-    ["dig_gravel2.wav"]="c3b3797d04cb9640e1d3a72d5e96edb410388fa3"
-    ["dig_gravel3.wav"]="48f7e1bb098abd36b9760cca27b9d4391a23de26"
-    ["dig_gravel4.wav"]="7bf3553a4fe41a0078f4988a13d6e1ed8663ef4c"
-    ["dig_sand1.wav"]="9e59c3650c6c3fc0a475f1b753b2fcfef430bf81"
-    ["dig_sand2.wav"]="0fa4234797f336ada4e3735e013e44d1099afe57"
-    ["dig_sand3.wav"]="c75589cc0087069f387de127dd1499580498738e"
-    ["dig_sand4.wav"]="37afa06f97d58767a1cd1382386db878be1532dd"
-    ["dig_snow1.wav"]="e9bab7d3d15541f0aaa93fad31ad37fd07e03a6c"
-    ["dig_snow2.wav"]="5887d10234c4f244ec5468080412f3e6ef9522f3"
-    ["dig_snow3.wav"]="a4bc069321a96236fde04a3820664cc23b2ea619"
-    ["dig_snow4.wav"]="e26fa3036cdab4c2264ceb19e1cd197a2a510227"
-    ["dig_stone1.wav"]="4e094ed8dfa98656d8fec52a7d20c5ee6098b6ad"
-    ["dig_stone2.wav"]="9c92f697142ae320584bf64c0d54381d59703528"
-    ["dig_stone3.wav"]="8f23c02475d388b23e5faa680eafe6b991d7a9d4"
-    ["dig_stone4.wav"]="363545a76277e5e47538b2dd3a0d6aa4f7a87d34"
-    ["dig_wood1.wav"]="9bc2a84d0aa98113fc52609976fae8fc88ea6333"
-    ["dig_wood2.wav"]="98102533e6085617a2962157b4f3658f59aea018"
-    ["dig_wood3.wav"]="45b2aef7b5049e81b39b58f8d631563fadcc778b"
-    ["dig_wood4.wav"]="dc66978374a46ab2b87db6472804185824868095"
-    ["dig_glass1.wav"]="7274a2231ed4544a37e599b7b014e589e5377094"
-    ["dig_glass2.wav"]="87c47bda3645c68f18a49e83cbf06e5302d087ff"
-    ["dig_glass3.wav"]="ad7d770b7fff3b64121f75bd60cecfc4866d1cd6"
-)
-declare -A DOWNLOADED_HASHES
-for name in "${!SOUNDS[@]}"; do
-    hash="${SOUNDS[$name]}"
-    if [[ -z "${DOWNLOADED_HASHES[$hash]}" ]]; then
-        download_mojang "$hash" "${SND_TMP}/${name}"
-        DOWNLOADED_HASHES[$hash]="${SND_TMP}/${name}"
-    else
-        cp "${DOWNLOADED_HASHES[$hash]}" "${SND_TMP}/${name}"
-    fi
-done
-for mat in cloth grass gravel sand snow stone wood; do
-    for i in 1 2 3 4; do
-        [ -f "${SND_TMP}/dig_${mat}${i}.wav" ] && \
-            cp "${SND_TMP}/dig_${mat}${i}.wav" "${SND_TMP}/step_${mat}${i}.wav"
-    done
-done
-(cd "$SND_TMP" && zip -q "${OLDPWD}/audio/default.zip" *.wav)
-rm -rf "$SND_TMP"
+if [ ! -f doc/sound-credits.md ]; then
+    echo "ERROR: ClassiCube/doc/sound-credits.md missing after clone."
+    exit 1
+fi
+
+echo "Building audio/default.zip from documented Freesound samples..."
+bash "$CURRENT_DIR/pkg/build-freesound-audio.sh" "$(pwd)/audio" || exit 1
 
 # ── Compose the DEB package ──
 
@@ -119,6 +77,7 @@ mkdir -p $PACKAGE_NAME${INSTALL_DIR}/logs
 mkdir -p $PACKAGE_NAME${INSTALL_DIR}/texturecache
 mkdir -p $PACKAGE_NAME/usr/share/applications
 mkdir -p $PACKAGE_NAME/usr/share/icons/hicolor/scalable/apps/
+mkdir -p $PACKAGE_NAME/usr/share/doc/classic-cube
 
 # Debian Control files
 cp -R pkg/DEBIAN $PACKAGE_NAME/
@@ -130,10 +89,15 @@ cp pkg/options.txt $PACKAGE_NAME${INSTALL_DIR}/
 cp pkg/fontscache.txt $PACKAGE_NAME${INSTALL_DIR}/
 cp pkg/default.cw $PACKAGE_NAME${INSTALL_DIR}/maps/
 
-# Assets
+# Assets (ClassiCube texture pack + Freesound audio zip only — no Mojang files)
 cp ClassiCube/texpacks/classicube.zip $PACKAGE_NAME${INSTALL_DIR}/texpacks/
-cp ClassiCube/audio/*.ogg $PACKAGE_NAME${INSTALL_DIR}/audio/
 cp ClassiCube/audio/default.zip $PACKAGE_NAME${INSTALL_DIR}/audio/
+
+# Sound attributions: next to the game binary and under Debian doc
+cp ClassiCube/doc/sound-credits.md $PACKAGE_NAME${INSTALL_DIR}/SOUNDS-CREDITS-ClassiCube.md
+cp ClassiCube/audio/SOUNDS-CREDITS.txt $PACKAGE_NAME${INSTALL_DIR}/
+cp $PACKAGE_NAME${INSTALL_DIR}/SOUNDS-CREDITS-ClassiCube.md $PACKAGE_NAME/usr/share/doc/classic-cube/
+cp $PACKAGE_NAME${INSTALL_DIR}/SOUNDS-CREDITS.txt $PACKAGE_NAME/usr/share/doc/classic-cube/
 
 # Desktop and Icon
 sudo tee $PACKAGE_NAME/usr/share/applications/classic-cube.desktop <<EOF
