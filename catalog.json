@@ -110,6 +110,16 @@
             "description": "Tombs Of Myra is a turn-based puzzle dungeon crawler featuring strategic grid movement, 120 unique levels, and survival tools like swords and bombs.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Tombs%20Of%20Myra/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/tombsofmyra_1.0.0-1_arm64.deb"
+        },
+        {
+            "id": "aircraftwar",
+            "name": "AirCraft War",
+            "version": "2.2.0",
+            "genre": "Arcade Shooter",
+            "size": "9.88 MB",
+            "description": "A classic 2D arcade shoot 'em up game where players control an aircraft to fight off waves of enemy planes, dodge incoming projectiles, and score points.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/AirCraft%20War/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/aircraftwar-2.2.0_arm64.deb"
         }
     ]
 }
