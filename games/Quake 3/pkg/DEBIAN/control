@@ -1,0 +1,9 @@
+Package: quake3
+Version: 1.11.6
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libgl1, libsdl2-2.0-0, libopenal1, libcurl4, hicolor-icon-theme
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: Quake III Arena Demo (ioquake3 port)
+ Fast-paced multiplayer first-person shooter standalone demo.
