@@ -1,0 +1,17 @@
+#!/bin/sh
+# Hyperpixel 720x720, Arduino Leonardo, Yamagi Quake II (OpenGL 1.4)
+# GLES1 needs the Pi legacy driver; Bookworm Mesa only exposes desktop GL / GLES2.
+
+export SDL_GAMECONTROLLERCONFIG="03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b5,rightshoulder:b6,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,leftx:a0,lefty:a1,platform:Linux,"
+export SDL_VIDEODRIVER=wayland
+
+exec /usr/share/quake2/quake2 \
+    -datadir /usr/share/quake2 \
+    +set vid_renderer gl1 \
+    +set vid_fullscreen 1 \
+    +set r_mode -1 \
+    +set r_customwidth 720 \
+    +set r_customheight 720 \
+    +set in_initjoy 1 \
+    +map demo1 \
+    "$@"

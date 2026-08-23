@@ -1,0 +1,14 @@
+Package: quake2
+Version: 8.70
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libc6 (>= 2.34), libsdl2-2.0-0 (>= 2.0.12), libgl1, libegl1, hicolor-icon-theme
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: Classic sci-fi first-person shooter (Yamagi Quake II)
+ Quake II (1997) by id Software, running on Yamagi Quake II 8.70.
+ OpenGL 1.4 renderer, 720x720 fullscreen and gamepad controls
+ tuned for Raspberry Pi Zero 2 W and Hyperpixel 4.0 XP.
+ .
+ This package includes the engine, game library and the official
+ Quake II demo 3.14 data (supported by Yamagi).
