@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+chmod 755 /usr/bin/dreamchess /usr/lib/dreamchess/dreamchess /usr/bin/dreamer
+
+CONFIG_DIR="/home/gamercard/.dreamchess"
+CONFIG_FILE="$CONFIG_DIR/options.xml"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+    mkdir -p "$CONFIG_DIR"
+    cp /usr/share/dreamchess/options.xml "$CONFIG_FILE"
+    chown -R gamercard:gamercard "$CONFIG_DIR"
+    chmod 644 "$CONFIG_FILE"
+fi
+
+if [ -x /usr/bin/update-desktop-database ]; then
+    update-desktop-database -q /usr/share/applications
+fi
+
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+    gtk-update-icon-cache -f -t /usr/share/icons/hicolor || true
+fi
+
+sync
+
+exit 0

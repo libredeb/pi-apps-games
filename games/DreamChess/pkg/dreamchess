@@ -1,0 +1,21 @@
+#!/bin/sh
+# Launcher: Wayland + PipeWire, GamerCard Leonardo, default Hyperpixel config
+
+BIN="/usr/lib/dreamchess/dreamchess"
+DEFAULT_OPTIONS="/usr/share/dreamchess/options.xml"
+CONFIG_DIR="${HOME}/.dreamchess"
+CONFIG_FILE="${CONFIG_DIR}/options.xml"
+
+mkdir -p "$CONFIG_DIR"
+if [ ! -f "$CONFIG_FILE" ] && [ -f "$DEFAULT_OPTIONS" ]; then
+    cp "$DEFAULT_OPTIONS" "$CONFIG_FILE"
+fi
+
+# Prefer Wayland/EGL (libwc). SDL 2.26 can fall back to X11 if Wayland init fails.
+export SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-wayland,x11}"
+# RPi libsdl2 is built with PulseAudio + ALSA, not native PipeWire.
+# The pulseaudio driver talks to PipeWire via pipewire-pulse.
+export SDL_AUDIODRIVER="${SDL_AUDIODRIVER:-pipewire,pulseaudio,alsa}"
+export SDL_GAMECONTROLLERCONFIG="${SDL_GAMECONTROLLERCONFIG:-03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b5,rightshoulder:b6,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,leftx:a0,lefty:a1,platform:Linux,}"
+
+exec "$BIN" "$@"
