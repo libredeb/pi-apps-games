@@ -1,0 +1,15 @@
+Package: rockbot
+Version: 2.01.090
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libc6, libgcc-s1, libstdc++6, libsdl2-2.0-0, libsdl2-image-2.0-0, libsdl2-mixer-2.0-0, libsdl2-ttf-2.0-0, libsdl2-gfx-1.0-0, hicolor-icon-theme
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Homepage: https://github.com/protoman/rockbot
+Description: NES-style Mega Man inspired action platformer
+ Rockbot is an open-source SDL engine for classic NES action
+ games, shipping Rockbot 1 and Rockbot 2. Fullscreen 720x720 and
+ GamerCard controls for Raspberry Pi Zero 2 W and Hyperpixel 4.0.
+ .
+ This package includes the game engine and both campaigns.
+ The map editor is not included.

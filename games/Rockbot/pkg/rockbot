@@ -1,0 +1,23 @@
+#!/bin/sh
+# Launcher: Hyperpixel 720x720 fill, Leonardo GamerCard, SDL2 Wayland/PipeWire
+
+GAME_DIR="/usr/share/rockbot"
+BIN="$GAME_DIR/rockbot"
+
+export SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-wayland,x11}"
+export SDL_AUDIODRIVER="${SDL_AUDIODRIVER:-pipewire,pulseaudio,alsa}"
+export SDL_RENDER_DRIVER="${SDL_RENDER_DRIVER:-opengles2}"
+export SDL_RENDER_SCALE_QUALITY="${SDL_RENDER_SCALE_QUALITY:-0}"
+export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
+export SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS=1
+export SDL_GAMECONTROLLERCONFIG="${SDL_GAMECONTROLLERCONFIG:-03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b5,rightshoulder:b6,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,leftx:a0,lefty:a1,platform:Linux,}"
+
+cd "$GAME_DIR" || exit 1
+
+if [ "${1:-}" = "RockDroid1" ] || [ "${1:-}" = "RockDroid2" ]; then
+    GAME_NAME="$1"
+    shift
+    exec "$BIN" --gamename "$GAME_NAME" "$@"
+fi
+
+exec "$BIN" "$@"

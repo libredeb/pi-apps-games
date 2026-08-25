@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+chmod 755 /usr/bin/rockbot /usr/share/rockbot/rockbot
+chmod -R a+rX /usr/share/rockbot
+
+# Drop stale pad/video config so GamerCard + 720x720 defaults apply.
+# Save slots in the same directory are left untouched.
+if [ -f /home/gamercard/.rockdroid/config_v205.sav ]; then
+    rm -f /home/gamercard/.rockdroid/config_v205.sav
+fi
+
+if [ -x /usr/bin/update-desktop-database ]; then
+    update-desktop-database -q /usr/share/applications
+fi
+
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+    gtk-update-icon-cache -f -t /usr/share/icons/hicolor || true
+fi
+
+sync
+
+exit 0

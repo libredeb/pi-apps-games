@@ -634,6 +634,33 @@ def patch_hide_cursor(ui_path: Path, scene_path: Path) -> None:
     print(f"{scene_path}: cursor hidden")
 
 
+def patch_hud(path: Path) -> None:
+    """Move captured-piece icons up and to the bezels on Hyperpixel 720x720.
+
+    Upstream HUD is laid out for 640x480. On a square 480x480 virtual screen the
+    lists sit over the player's corner pieces; tuck them under the king avatars.
+    """
+    text = path.read_text()
+    if "GamerCard Hyperpixel: captured-piece icons" in text:
+        print(f"{path}: already patched")
+        return
+    text = must_replace(
+        text,
+        "	coord3_t capture_list_offset = {60 + get_ui_trans_pos(), 180};",
+        "	/* GamerCard Hyperpixel: captured-piece icons on the side bezels. */\n"
+        "	coord3_t capture_list_offset = {24 + get_ui_trans_pos(), 352};",
+        "capture list offset",
+    )
+    text = must_replace(
+        text,
+        "		offset.y -= 28; /*get_text_character('a')->height;*/\n",
+        "		offset.y -= 24;\n",
+        "capture list spacing",
+    )
+    path.write_text(text)
+    print(f"{path}: HUD capture lists moved")
+
+
 def main() -> int:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else ".")
     patch_header(root / "dreamchess/src/gui/ui_sdlgl.h")
@@ -642,6 +669,7 @@ def main() -> int:
     patch_colour_fbo(root / "dreamchess/src/gui/ui_sdlgl_3d.c")
     patch_screen_fbo(root / "dreamchess/src/gui/ui_sdlgl.c")
     patch_hide_cursor(root / "dreamchess/src/gui/ui_sdlgl.c", root / "dreamchess/src/gui/draw_scene.c")
+    patch_hud(root / "dreamchess/src/gui/ingame_ui.c")
     patch_cmake(root / "dreamchess/src/CMakeLists.txt")
     patch_debug(root / "dreamchess/src/debug.c")
     patch_audio(root / "dreamchess/src/audio/sdlmixer.c")
