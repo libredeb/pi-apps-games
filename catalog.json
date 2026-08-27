@@ -120,6 +120,16 @@
             "description": "A classic 2D arcade shoot 'em up game where players control an aircraft to fight off waves of enemy planes, dodge incoming projectiles, and score points.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/AirCraft%20War/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/aircraftwar-2.2.0_arm64.deb"
+        },
+        {
+            "id": "rockbot",
+            "name": "Rockbot",
+            "version": "2.01.090",
+            "genre": "Action Platformer",
+            "size": "21.24 MB",
+            "description": "Step into a vibrant pixel-art world where you control a powerful robot soldier fighting to protect humanity from an army of rogue machines.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Rockbot/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/rockbot-2.01.090_arm64.deb"
         }
     ]
 }
