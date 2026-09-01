@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# catalog.json — when publishing, the store description must include:
+#   Not affiliated with Mojang Studios or Microsoft.
+#
 
 # Load extra utils functions
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -75,6 +79,7 @@ mkdir -p $PACKAGE_NAME${INSTALL_DIR}/plugins
 mkdir -p $PACKAGE_NAME${INSTALL_DIR}/maps
 mkdir -p $PACKAGE_NAME${INSTALL_DIR}/logs
 mkdir -p $PACKAGE_NAME${INSTALL_DIR}/texturecache
+mkdir -p $PACKAGE_NAME/usr/bin
 mkdir -p $PACKAGE_NAME/usr/share/applications
 mkdir -p $PACKAGE_NAME/usr/share/icons/hicolor/scalable/apps/
 mkdir -p $PACKAGE_NAME/usr/share/doc/classic-cube
@@ -99,18 +104,10 @@ cp ClassiCube/audio/SOUNDS-CREDITS.txt $PACKAGE_NAME${INSTALL_DIR}/
 cp $PACKAGE_NAME${INSTALL_DIR}/SOUNDS-CREDITS-ClassiCube.md $PACKAGE_NAME/usr/share/doc/classic-cube/
 cp $PACKAGE_NAME${INSTALL_DIR}/SOUNDS-CREDITS.txt $PACKAGE_NAME/usr/share/doc/classic-cube/
 
-# Desktop and Icon
-sudo tee $PACKAGE_NAME/usr/share/applications/classic-cube.desktop <<EOF
-[Desktop Entry]
-Type=Application
-Name=Classic Cube
-Comment=Fun with Blocks
-Path=${INSTALL_DIR}
-Exec=env SDL_GAMECONTROLLERCONFIG="03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b7,rightshoulder:b6,dpup:-a1,dpdown:+a1,dpleft:-a0,dpright:+a0,platform:Linux," ${INSTALL_DIR}/ClassiCube ${INSTALL_DIR}/maps/default.cw
-Icon=classic-cube
-Terminal=false
-Categories=Game;
-EOF
+# Wrapper skips the asset-download launcher (map path → RunGame, never Launcher_Run).
+install -Dm 755 pkg/classic-cube "$PACKAGE_NAME/usr/bin/classic-cube"
+install -Dm 644 pkg/classic-cube.desktop \
+    "$PACKAGE_NAME/usr/share/applications/classic-cube.desktop"
 cp pkg/icon.png $PACKAGE_NAME/usr/share/icons/hicolor/scalable/apps/classic-cube.png
 
 rm -rf ClassiCube/

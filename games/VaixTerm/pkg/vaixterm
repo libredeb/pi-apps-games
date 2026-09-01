@@ -1,0 +1,18 @@
+#!/bin/sh
+# Launcher: Hyperpixel 720x720, Leonardo GamerCard, gamercard theme/OSK
+
+BIN="/usr/lib/vaixterm/vaixterm"
+DATA_DIR="/usr/share/vaixterm"
+
+export SDL_GAMECONTROLLERCONFIG="${SDL_GAMECONTROLLERCONFIG:-03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b5,rightshoulder:b6,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,leftx:a0,lefty:a1,platform:Linux,}"
+
+cd "$DATA_DIR" || exit 1
+
+exec "$BIN" \
+    -w 720 -h 720 \
+    --osk-grid true \
+    --no-credit \
+    -s 24 \
+    -cs res/gamercard.theme \
+    --osk-layout res/gamercard.kb \
+    "$@"

@@ -1,0 +1,12 @@
+Package: vaixterm
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: arm64
+Depends: libc6, libsdl2-2.0-0, libsdl2-ttf-2.0-0, libsdl2-image-2.0-0
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Homepage: https://github.com/libredeb/vaixterm
+Description: SDL2 terminal emulator for handheld devices
+ VaixTerm is a lightweight SDL2 terminal emulator for handheld
+ and embedded systems. It supports ANSI/VT100, 256-color and
+ True Color, UTF-8, gamepad navigation, and an on-screen keyboard.

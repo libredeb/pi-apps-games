@@ -1,0 +1,19 @@
+#!/bin/sh
+# Skip the ClassiCube launcher (it can fetch Mojang CDN assets).
+# An absolute map path is the official CLI: RunGame() + autoload, not Launcher_Run().
+# --singleplayer also skips the launcher, but starts a new world (no map).
+# Zero arguments always opens the launcher — never do that.
+
+INSTALL_DIR="/usr/local/games/classic-cube"
+BIN="$INSTALL_DIR/ClassiCube"
+MAP="$INSTALL_DIR/maps/default.cw"
+
+cd "$INSTALL_DIR" || exit 1
+
+export SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-wayland,x11}"
+export SDL_GAMECONTROLLERCONFIG="${SDL_GAMECONTROLLERCONFIG:-03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b7,rightshoulder:b6,dpup:-a1,dpdown:+a1,dpleft:-a0,dpright:+a0,platform:Linux,}"
+
+if [ -f "$MAP" ]; then
+    exec "$BIN" "$MAP"
+fi
+exec "$BIN" --singleplayer

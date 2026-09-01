@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Classic Cube
+GenericName=Sandbox building game
+Comment=Build and explore a blocky sandbox world
+Path=/usr/local/games/classic-cube
+Exec=/usr/bin/classic-cube
+Icon=classic-cube
+Terminal=false
+Categories=Game;AdventureGame;
+Keywords=sandbox;blocks;building;classicube;
+StartupNotify=false

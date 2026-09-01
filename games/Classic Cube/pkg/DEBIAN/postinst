@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-chmod +x /usr/local/games/classic-cube/ClassiCube
+chmod 755 /usr/bin/classic-cube /usr/local/games/classic-cube/ClassiCube
 chown -R gamercard:gamercard /usr/local/games/classic-cube
 update-desktop-database -q /usr/share/applications
 exit 0

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=VaixTerm
+GenericName=Terminal emulator
+Comment=Terminal emulator for handheld gaming devices
+Path=/usr/share/vaixterm
+Exec=/usr/bin/vaixterm
+Icon=vaixterm
+Terminal=false
+Categories=Game;
+Keywords=terminal;shell;console;osk;handheld;
+StartupNotify=false
