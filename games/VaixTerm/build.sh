@@ -30,7 +30,10 @@ if [ -z "$VERSION" ]; then
 fi
 
 # ── Build ──
-make -C "$SOURCE_DIR" -j"$(nproc)" || exit 1
+# Pi Zero 2 W rev 1.0 (Cortex-A53). Pass CPU flags via CC: upstream Makefile
+# assigns CFLAGS := $(NATIVE_CFLAGS), so make CFLAGS=... would drop SDL/includes.
+make -C "$SOURCE_DIR" -j"$(nproc)" \
+    CC="gcc -mcpu=cortex-a53 -mtune=cortex-a53 -ftree-vectorize" || exit 1
 
 # ── Compose the DEB package ──
 PACKAGE_NAME="${GAME}-${VERSION}_${TARGET_ARCH}"

@@ -61,10 +61,12 @@ cd "$CURRENT_DIR" || exit 1
 rm -rf dsda-doom
 git clone --depth 1 https://github.com/kraflab/dsda-doom.git || exit 1
 mkdir -p dsda-doom/build
+# Pi Zero 2 W rev 1.0 (Cortex-A53). Release already adds -O3 (implies vectorize);
+# flags here make the A53 target explicit for C and C++.
 cmake -S dsda-doom/prboom2 -B dsda-doom/build \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_C_FLAGS="-mcpu=cortex-a53" \
-    -DCMAKE_CXX_FLAGS="-mcpu=cortex-a53" || exit 1
+    -DCMAKE_C_FLAGS="-mcpu=cortex-a53 -mtune=cortex-a53 -ftree-vectorize" \
+    -DCMAKE_CXX_FLAGS="-mcpu=cortex-a53 -mtune=cortex-a53 -ftree-vectorize" || exit 1
 cmake --build dsda-doom/build -j"$(nproc)" || exit 1
 
 # --- Compose the DEB package ---

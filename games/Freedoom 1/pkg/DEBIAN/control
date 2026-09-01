@@ -3,7 +3,7 @@ Version: 0.13.0
 Section: games
 Priority: optional
 Architecture: arm64
-Depends: libc6 (>= 2.34), libfluidsynth3, libmad0 (>= 0.15.1b-3), libvorbisfile3 (>= 1.1.2), libzip4 (>= 1.7.3), libxmp4 (>= 4.5.0), libsdl2-2.0-0 (>= 2.0.12), libsdl2-image-2.0-0, libsdl2-mixer-2.0-0, libsdl2-net-2.0-0
+Depends: libc6 (>= 2.34), libgcc-s1, libstdc++6, libfluidsynth3, libmad0 (>= 0.15.1b-3), libportmidi0, libsndfile1, libvorbisfile3 (>= 1.1.2), libzip4 (>= 1.7.3), libxmp4 (>= 4.5.0), libgl1, libglu1-mesa, libsdl2-2.0-0 (>= 2.0.12), libsdl2-image-2.0-0, libsdl2-mixer-2.0-0, libsdl2-net-2.0-0
 Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
 Description: free Doom-compatible single player campaign (Phase 1)
  Freedoom: Phase 1 contains four episodes, nine levels each, to

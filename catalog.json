@@ -130,6 +130,46 @@
             "description": "Step into a vibrant pixel-art world where you control a powerful robot soldier fighting to protect humanity from an army of rogue machines.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Rockbot/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/rockbot-2.01.090_arm64.deb"
+        },
+        {
+            "id": "dreamchess",
+            "name": "DreamChess",
+            "version": "0.3.0",
+            "genre": "Strategy/Board",
+            "size": "9.50 MB",
+            "description": "Experience the timeless game of strategy in full 3D. DreamChess is a clean, accessible digital chess simulator designed for players of all skill levels.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/DreamChess/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/dreamchess-0.3.0_arm64.deb"
+        },
+        {
+            "id": "vaixterm",
+            "name": "VaixTerm",
+            "version": "1.0.0",
+            "genre": "Utilities/Tools",
+            "size": "417.66 KB",
+            "description": "It is a robust, controller-optimized terminal emulator designed specifically for Linux-based handheld gaming consoles and embedded systems.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/VaixTerm/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/vaixterm-1.0.0_arm64.deb"
+        },
+        {
+            "id": "freedoom1",
+            "name": "Freedoom 1",
+            "version": "0.13.0",
+            "genre": "Action/Shooter",
+            "size": "36.93 MB",
+            "description": "Spanning four distinct episodes and 36 challenging levels, you will battle through a dark military sci-fi universe overrun by aggressive alien monstrosities.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Freedoom%201/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/freedoom1-0.13.0_arm64.deb"
+        },
+        {
+            "id": "freedoom2",
+            "name": "Freedoom 2",
+            "version": "0.13.0",
+            "genre": "Action/Shooter",
+            "size": "37.10 MB",
+            "description": "The battle for survival continues on a devastating scale. Featuring a single, contiguous 32-level campaign, turns up the intensity with larger enemy encounters, complex level architecture, and heavier firepower.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Freedoom%202/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/freedoom2-0.13.0_arm64.deb"
         }
     ]
 }
