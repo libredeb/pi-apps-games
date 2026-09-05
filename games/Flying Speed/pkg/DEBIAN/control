@@ -1,0 +1,12 @@
+Package: flying-speed
+Version: 0.1.0
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libc6, libstdc++6, libsdl2-2.0-0, libsdl2-image-2.0-0, libsdl2-ttf-2.0-0, libsdl2-mixer-2.0-0
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Homepage: https://github.com/libredeb/flying-speed
+Description: Arcade game where you fly a bird past obstacles
+ Flying Speed is a fun arcade game written in C++ and SDL2.
+ Control a bird and try to go as far as possible while dodging
+ pipes. The play area is 720x720 and it starts in fullscreen.

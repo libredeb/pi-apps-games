@@ -1,5 +1,5 @@
 {
-    "version": 20260901,
+    "version": 20260905,
     "games": [
         {
             "id": "astromenace",
@@ -170,6 +170,36 @@
             "description": "The battle for survival continues on a devastating scale. Featuring a single, contiguous 32-level campaign, turns up the intensity with larger enemy encounters, complex level architecture, and heavier firepower.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Freedoom%202/pkg/icon.png",
             "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/freedoom2-0.13.0_arm64.deb"
+        },
+        {
+            "id": "flying-speed",
+            "name": "Flying Speed",
+            "version": "0.1.0",
+            "genre": "Arcade",
+            "size": "6.40 MB",
+            "description": "Flying Speed is a fun arcade game where you control a bird and try to go as far as possible while dodging obstacles.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Flying%20Speed/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/flying-speed-0.1.0_arm64.deb"
+        },
+        {
+            "id": "pixy",
+            "name": "Pixy",
+            "version": "2026.1",
+            "genre": "Music Player",
+            "size": "85.33 MB",
+            "description": "Pixy is a fullscreen, controller-friendly music player for GamerCard. It ships with a small example library of royalty-free tracks.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Pixy/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/pixy-2026.1_arm64.deb"
+        },
+        {
+            "id": "supertux2",
+            "name": "Supertux 2",
+            "version": "0.6.3",
+            "genre": "Platforms",
+            "size": "235.72 MB",
+            "description": "SuperTux is a classic 2D jump 'n run sidescroller. Guide Tux the Penguin through colorful worlds, jumping and fighting your way to rescue Penny from the evil Nolok.",
+            "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Supertux%202/pkg/icon.png",
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/supertux2-0.6.3_arm64.deb"
         }
     ]
 }

@@ -1,0 +1,9 @@
+Put your zips here.
+
+build.sh needs two .zip files in this folder (not versioned in this repo):
+
+  - library.zip   -> the sample music library.
+  - <version>.zip -> the precompiled Pixy app (any name; the script picks
+                      the only .zip here that isn't "library.zip").
+
+Then run ../../build.sh

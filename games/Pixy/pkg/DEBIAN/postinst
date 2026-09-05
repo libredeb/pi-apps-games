@@ -1,0 +1,43 @@
+#!/bin/sh
+set -e
+
+BIN=/usr/local/pixy/Pixy/Pixy
+STATE_DIR=/usr/local/pixy/Pixy/.pixy
+HOME_DIR=/home/gamercard
+MUSIC_DIR=/home/gamercard/Music
+LIGHTPAD_ICON_CACHE=/home/gamercard/.lightpad/cache/PiXflat_pixy.png
+
+chmod 755 "$BIN" 2>/dev/null || true
+
+if id -u gamercard >/dev/null 2>&1; then
+    # Writable per-user app state, created/repaired on every install/upgrade.
+    install -d -o gamercard -g gamercard -m 0755 "$STATE_DIR"
+
+    # /home/gamercard is a real user home directory that already exists on
+    # the device; make sure packaging never leaves it (or the bundled sample
+    # library) owned by root.
+    if [ -d "$HOME_DIR" ]; then
+        chown gamercard:gamercard "$HOME_DIR" || true
+    fi
+    if [ -d "$MUSIC_DIR" ]; then
+        chown -R gamercard:gamercard "$MUSIC_DIR" || true
+    fi
+else
+    install -d -m 0755 "$STATE_DIR"
+fi
+
+# Force Lightpad to regenerate its derived icon from the "pixy" source
+# instead of showing a stale cached image after an upgrade.
+rm -f "$LIGHTPAD_ICON_CACHE" 2>/dev/null || true
+
+if [ -x /usr/bin/update-desktop-database ]; then
+    update-desktop-database -q /usr/share/applications
+fi
+
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+    gtk-update-icon-cache -f -t /usr/share/icons/hicolor || true
+fi
+
+sync
+
+exit 0

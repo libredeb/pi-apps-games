@@ -1,0 +1,13 @@
+Package: pixy
+Version: 0.0.0
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libc6, libasound2, libwayland-client0
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Description: Fullscreen music player for GamerCard
+ Pixy is a fullscreen, controller-friendly music player built for
+ GamerCard. It ships with a small example library (free/royalty-free
+ sample tracks) under /home/gamercard/Music so you have something to
+ play right after installing, and it is meant to be replaced with your
+ own local music collection.

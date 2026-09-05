@@ -1,0 +1,32 @@
+#!/bin/sh
+set -e
+
+BIN=/usr/games/supertux2
+HOME_DIR=/home/gamercard
+CONFIG_DIR=/home/gamercard/.local/share/supertux2
+
+chmod 755 "$BIN" 2>/dev/null || true
+
+if id -u gamercard >/dev/null 2>&1; then
+    # Writable per-user config, created/repaired on every install/upgrade.
+    install -d -o gamercard -g gamercard -m 0755 "$HOME_DIR/.local"
+    install -d -o gamercard -g gamercard -m 0755 "$HOME_DIR/.local/share"
+    install -d -o gamercard -g gamercard -m 0755 "$CONFIG_DIR"
+    if [ -f "$CONFIG_DIR/config" ]; then
+        chown gamercard:gamercard "$CONFIG_DIR/config"
+    fi
+else
+    install -d -m 0755 "$CONFIG_DIR"
+fi
+
+if [ -x /usr/bin/update-desktop-database ]; then
+    update-desktop-database -q /usr/share/applications
+fi
+
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+    gtk-update-icon-cache -f -t /usr/share/icons/hicolor || true
+fi
+
+sync
+
+exit 0
