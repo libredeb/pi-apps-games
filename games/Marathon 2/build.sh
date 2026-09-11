@@ -18,6 +18,11 @@ wget https://github.com/Aleph-One-Marathon/alephone/releases/download/release-${
 tar xjvf AlephOne-${version}.tar.bz2 || error "Unable to decompress source code"
 rm -f AlephOne-*.tar.bz2
 
+# GamerCard: fill the whole Hyperpixel 4.0 (720x720) panel with the 3D view
+# instead of Aleph One's classic 2:1-aspect view + black strips (confirmed
+# on real hardware). See pkg/patch-fullscreen-view.py for details.
+python3 "$CURRENT_DIR/pkg/patch-fullscreen-view.py" "AlephOne-${version}" || exit 1
+
 # This symbolic link is needed because make brokes when try to read 
 # the folder with a space in the name. This is the fix.
 REAL_PATH="$(pwd)"
@@ -51,6 +56,19 @@ cp -R pkg/DEBIAN $PACKAGE_NAME/
 # Move Engine binaries and shared data (MML, Plugins)
 cp -r pkg_output/usr/bin/* $PACKAGE_NAME/usr/bin/
 cp -r pkg_output/usr/share/AlephOne $PACKAGE_NAME/usr/share/
+
+# GamerCard: move the real engine binary out of the way (it stays named
+# "alephone" since that's the shared engine used by the whole Marathon
+# saga) and expose a game-specific wrapper as /usr/bin/marathon2, so a
+# future Marathon 1 / Marathon Infinity package can ship its own
+# /usr/bin/marathon1 or /usr/bin/marathoninfinity wrapper without colliding
+# on the same command name. SDL_GAMECONTROLLERCONFIG and the 720x720
+# fullscreen default preferences are guaranteed to be set here, regardless
+# of how the desktop session launched it.
+mkdir -p $PACKAGE_NAME/usr/lib/alephone
+mv $PACKAGE_NAME/usr/bin/alephone $PACKAGE_NAME/usr/lib/alephone/alephone
+install -Dm 755 pkg/marathon2 $PACKAGE_NAME/usr/bin/marathon2
+install -Dm 755 pkg/gamercard-seed-prefs.py $PACKAGE_NAME/usr/lib/alephone/gamercard-seed-prefs.py
 cp -r pkg_output/usr/share/icons $PACKAGE_NAME/usr/share/
 cp -r pkg_output/usr/share/mime $PACKAGE_NAME/usr/share/
 cp -r pkg_output/usr/share/man $PACKAGE_NAME/usr/share/
@@ -68,7 +86,7 @@ echo "[Desktop Entry]
 Version=1.0
 Name=Marathon 2
 Comment=Sci-fi first-person shooter
-Exec=/usr/bin/alephone /usr/share/alephone/marathon2/ %u
+Exec=/usr/bin/marathon2 %u
 Icon=marathon2
 Terminal=false
 Type=Application

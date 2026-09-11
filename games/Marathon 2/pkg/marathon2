@@ -1,0 +1,75 @@
+#!/bin/sh
+# Launcher: Hyperpixel 4.0 (720x720) + GamerCard Leonardo gamepad
+#
+# Aleph One already supports SDL_GameController natively (menus, terminals
+# and gameplay all read controller input once SDL recognizes the pad), so no
+# source patch is needed. The real problems on GamerCard, confirmed on the
+# actual hardware (Pi Zero 2 W, Debian 12 aarch64, labwc), were:
+#
+#   1. The .desktop launcher used to exec /usr/bin/alephone directly. If
+#      SDL_GAMECONTROLLERCONFIG only lives in an interactive shell profile,
+#      a GUI-launched process never inherits it, SDL never maps the Arduino
+#      Leonardo HID device, and alephone logs "No mapping found for
+#      controller" -> no gamepad input at all, in the menu or in game.
+#
+#   2. Aleph One's "Trigger" and "2nd Trigger" actions (primary/secondary
+#      weapon fire) are bound by default to analog trigger axes
+#      (controller-rt/controller-lt), which the GamerCard pad doesn't have.
+#      Aliasing a real button to a virtual trigger axis in
+#      SDL_GAMECONTROLLERCONFIG (e.g. "righttrigger:b1" alongside "b:b1")
+#      does NOT work: SDL_gamecontroller.c's HandleJoystickButton() only
+#      ever fires the FIRST binding that matches a given physical button,
+#      so "b:b1" (parsed first) always wins and "righttrigger:b1" is dead
+#      code -- same "first match wins" limitation as the d-pad/axis issue
+#      below, just for buttons instead of axes. So instead we leave B and
+#      Back as plain buttons here, and gamercard-seed-prefs.py rebinds the
+#      "trigger-1"/"trigger-2" actions directly to "controller-b"/
+#      "controller-back" (real button presses, no virtual axis involved).
+#
+#   3. The GamerCard's "stick" (axes a0/a1) is actually a 4-way digital
+#      D-pad wired as two analog axes (confirmed with `jstest`: each axis
+#      only ever reports 0 or +/-32767, no values in between). SDL2 cannot
+#      make one physical axis serve BOTH a continuous axis (rightx/lefty)
+#      AND a digital d-pad (dpup/dpdown/dpleft/dpright) at the same time:
+#      SDL_gamecontroller.c's HandleJoystickAxis() only ever fires the
+#      FIRST matching binding for a given axis, and a full-range binding
+#      like "rightx:a0" matches every possible value, permanently starving
+#      the half-range dpad bindings ("dpleft:-a0"/"dpright:+a0") -- no
+#      amount of pressing harder fixes that, it's a structural conflict in
+#      the same mapping string. Since it's a true on/off switch anyway (no
+#      analog gradient to lose), we dedicate a0/a1 to the d-pad only. Aleph
+#      One's own main-menu navigation, and its "glance"/"map zoom" actions,
+#      are hardcoded to read real SDL_CONTROLLER_BUTTON_DPAD_* button
+#      presses -- so this is required simply to be able to navigate the
+#      menu and reach gameplay at all.
+#
+#      Losing the continuous rightx/lefty axis means Aleph One's default
+#      "forward"/"back"/"look-left"/"look-right" bindings (which read the
+#      continuous axis value) go dead. gamercard-seed-prefs.py rebinds
+#      those 4 actions to the d-pad buttons instead (up=forward,
+#      down=back, left=turn-left, right=turn-right -- classic "tank
+#      controls"), trading away gamepad support for "glance" and "map
+#      zoom" (minor, rarely-used actions that default to the same
+#      buttons) in exchange for working menu navigation *and* movement.
+
+BIN="/usr/lib/alephone/alephone"
+GAME_DIR="/usr/share/alephone/marathon2"
+SEED_SCRIPT="/usr/lib/alephone/gamercard-seed-prefs.py"
+PREFS_DIR="${HOME}/.alephone"
+PREFS_FILE="${PREFS_DIR}/Marathon 2 Preferences"
+
+# Seed 720x720 fullscreen and d-pad-friendly movement bindings, each exactly
+# once (idempotent, guarded by sentinel files inside gamercard-seed-prefs.py
+# itself), so later manual changes from Preferences -> Graphics/Controls are
+# never silently reverted on a later launch.
+mkdir -p "$PREFS_DIR"
+if [ -f "$SEED_SCRIPT" ]; then
+    python3 "$SEED_SCRIPT" "$PREFS_FILE" || true
+fi
+
+export SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-wayland,x11}"
+export SDL_AUDIODRIVER="${SDL_AUDIODRIVER:-pipewire,pulseaudio,alsa}"
+export SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS=1
+export SDL_GAMECONTROLLERCONFIG="${SDL_GAMECONTROLLERCONFIG:-03000000412300003680000001010000,Arduino Leonardo,a:b0,b:b1,x:b3,y:b4,back:b10,start:b11,leftshoulder:b7,rightshoulder:b6,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,platform:Linux,}"
+
+exec "$BIN" "$GAME_DIR" "$@"
