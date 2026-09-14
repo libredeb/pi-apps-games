@@ -1,0 +1,17 @@
+Package: frogatto
+Version: 1.3.1
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libc6, libstdc++6, libgcc-s1, zlib1g, libpng16-16, libglew2.2, libgl1, libx11-6, libboost-regex1.74.0-icu72, libsdl-image1.2, libsdl-mixer1.2, libsdl-ttf2.0-0, libsdl1.2debian, fonts-freefont-ttf, fonts-dejavu-core
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Homepage: http://www.frogatto.com/
+Description: 2D action-adventure platformer starring a quixotic frog
+ Frogatto & Friends is a classic-style action-adventure platformer with
+ gorgeous pixel-art and catchy music. Run, jump, and use your tongue to
+ grab, swallow and spit out enemies as projectiles while exploring the
+ world, solving puzzles and battling bosses.
+ .
+ This package repackages the official upstream binary and data files
+ from Debian's frogatto/frogatto-data packages with a custom icon and a
+ window sized to fill GamerCard's 720x720 screen by default.
