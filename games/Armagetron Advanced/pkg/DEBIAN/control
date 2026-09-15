@@ -1,0 +1,17 @@
+Package: armagetronad
+Version: 0.2.9.3.0
+Section: games
+Priority: optional
+Architecture: arm64
+Depends: libc6 (>= 2.36), libgcc-s1, libstdc++6, libsdl1.2debian (>= 1.2.15), libsdl-image1.2, libglu1-mesa | libglu1, libgl1, libpng16-16, libxml2, libcurl4, zlib1g
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Homepage: https://armagetronad.org
+Description: 3D Tron-like lightcycle racing game
+ Armagetron Advanced is a 3D Tron-like game. Ride a light cycle that only
+ turns in 90-degree steps, leaves a solid wall behind it and never stops:
+ avoid crashing into the walls while trying to make your opponents do so.
+ .
+ This package is built from the upstream 0.2.9.3.0 source with a small
+ patch that turns the gamepad's D-pad and buttons into keyboard input
+ (the engine predates gamepad support), plus a config preset that fills
+ GamerCard's 720x720 screen in fullscreen by default.

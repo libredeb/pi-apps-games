@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Armagetron Advanced
+GenericName=3D Tron-like lightcycle game
+Comment=Ride a light cycle and avoid the walls, yours and everyone else's
+Exec=/usr/bin/armagetronad
+Icon=armagetronad
+Terminal=false
+Categories=Game;ActionGame;
+Keywords=tron;lightcycle;racing;retro;
+StartupNotify=false
