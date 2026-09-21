@@ -1,5 +1,5 @@
 {
-    "version": 20260905,
+    "version": 20260920,
     "games": [
         {
             "id": "astromenace",
@@ -184,12 +184,12 @@
         {
             "id": "pixy",
             "name": "Pixy",
-            "version": "2026.1",
+            "version": "2026.10",
             "genre": "Music Player",
             "size": "85.33 MB",
             "description": "Pixy is a fullscreen, controller-friendly music player for GamerCard. It ships with a small example library of royalty-free tracks.",
             "icon": "https://cdn.jsdelivr.net/gh/libredeb/pi-apps-games@main/games/Pixy/pkg/icon.png",
-            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/pixy-2026.1_arm64.deb"
+            "deb": "https://github.com/libredeb/pi-apps-games/releases/download/v12-bookworm.arm64/pixy-2026.10_arm64.deb"
         },
         {
             "id": "supertux2",
