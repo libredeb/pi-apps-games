@@ -1,5 +1,5 @@
 Package: frogatto
-Version: 1.3.1
+Version: 1.3.2
 Section: games
 Priority: optional
 Architecture: arm64
@@ -13,5 +13,6 @@ Description: 2D action-adventure platformer starring a quixotic frog
  world, solving puzzles and battling bosses.
  .
  This package repackages the official upstream binary and data files
- from Debian's frogatto/frogatto-data packages with a custom icon and a
- window sized to fill GamerCard's 720x720 screen by default.
+ from Debian's frogatto/frogatto-data packages with a custom icon, a
+ 720x720 window for GamerCard's panel, and a pad remap (A tongue, B
+ jump, X attack toggle, Start/Select pause).
